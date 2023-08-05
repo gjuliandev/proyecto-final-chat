@@ -10,23 +10,14 @@ import { StoreService } from './providers/store.service';
   templateUrl: './app.component.html',
   styles: []
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
+  
   title = 'CHAT - GJC';
-
-  mensaje: string = '';
-  public mensajes: Array<IMensaje> = [];
-
-  @ViewChild('input') input!: ElementRef;
 
   constructor(
     private authService: AuthService,
     public firebaseService: FirebaseService,
-    private storageService: StoreService
    ) {}
-
-   ngAfterViewInit(): void {
-    this.firebaseService.getAllMensajes();
-  }
   
   public login() {
    this.authService.authenticate('gjulianc@gmail.com', '123jklj3'); 
@@ -39,16 +30,5 @@ export class AppComponent implements AfterViewInit {
   public logout() {
     this.authService.logout();  
   }
-
-
-  public newMessage() {
-    this.mensaje = (this.input.nativeElement.value).trim();
-    if (this.mensaje ) {
-      this.firebaseService.createMensaje(this.mensaje )
-        .then( () => {
-          this.mensaje = this.input.nativeElement.value = '';
-        })
-        .catch( (error) => console.log(error));
-    }
-  }
+  
 }

@@ -1,0 +1,9 @@
+<div *ngFor="let element of firebaseService.mensajes">
+    <div class="message other-message">
+        <span>
+            {{element.mensaje}}
+        </span>
+        <div class="time text-right"><br>{{ element.fecha | date:'shortTime' }}</div>
+    </div>
+   
+</div>

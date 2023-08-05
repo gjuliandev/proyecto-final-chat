@@ -1,0 +1,64 @@
+
+
+.input-message{
+    width: 90%;
+    border: 1px solid #c3c3c3;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 2px 2px 5px 0px rgb(0 0 0 / 5%);
+    margin: 20px;
+    padding: 10px;
+}
+
+section {
+    margin-top:0px;
+    margin-bottom: 0px;
+    height: 82vh;
+    overflow: auto;
+}
+
+header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+header, footer {
+    background-color: #F5F5F5;    
+}
+
+.messages-container {
+    padding: 20px;
+ 
+    background-image: url('../../../assets/images/pattern.png');
+}
+
+.my-messages {
+    background: #DBF7C5;
+    color: #000;
+}
+
+.other-message {
+    background: #fff;
+    color: #000;
+}
+
+.message {
+    padding: 10px !important;
+    border-radius: 10px !important;
+    margin: 20px 20px 20px 20px !important;
+    width: 80%;
+    img {
+        width: 100%;
+    }
+}
+
+.time {
+    display: flex;
+    justify-content: flex-end;
+    color: #cacaca;
+    font-size: small;
+   
+  }
