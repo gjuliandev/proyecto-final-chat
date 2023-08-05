@@ -1,4 +1,9 @@
 <div class="container">
   <button (click)="login()">Login</button>
   <button (click)="logout()">Logout</button>
+  <button (click)="getMensajes()">Listar mensajes</button>
+</div>
+<div>
+  <input type="text" [(ngModel)]="mensaje" />
+  <button (click)="newMessage()">Enviar</button>
 </div>
