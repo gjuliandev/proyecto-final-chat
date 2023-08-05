@@ -20,7 +20,8 @@ export class AppComponent implements AfterViewInit {
 
   constructor(
     private authService: AuthService,
-    public firebaseService: FirebaseService
+    public firebaseService: FirebaseService,
+    private storageService: StoreService
    ) {}
 
    ngAfterViewInit(): void {
@@ -28,7 +29,7 @@ export class AppComponent implements AfterViewInit {
   }
   
   public login() {
-   this.authService.authenticate(); 
+   this.authService.authenticate('gjulianc@gmail.com', '123jklj3'); 
   }
 
   public register() {

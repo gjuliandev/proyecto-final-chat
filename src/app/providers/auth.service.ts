@@ -18,23 +18,26 @@ export class AuthService {
   ) { }
 
 
-  public authenticate() {
+  public authenticate(email: string, password: string) {
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, 'gjulian@test2.es', '4657489')
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Logged in 
         const user = userCredential.user;
         this.storeService.updateState({
           type: ACTION_SET_CURRENT_USER,
-          payload: 'gjulian'
+          payload: user
         });
+
+        this.storeService.getState('userState')
+            .subscribe( resp => console.log(resp.user.email));
+      
       })
       .catch((error) => {
-        console.log(error);
-        const errorCode = error.code;
-        console.log(errorCode);
+      
+        const errorCode = error.code
         const errorMessage = error.message;
-        console.log(errorMessage);
+     
       });
   }
 
@@ -44,7 +47,7 @@ export class AuthService {
     .then((userCredential) => {
       // Signed in 
       console.log(userCredential);
-      
+     
     })
     .catch((error) => {
       console.log(error);
