@@ -3,6 +3,7 @@ import { AuthService } from './providers/auth.service';
 import { FirebaseService } from './providers/firebase.service';
 import { IMensaje } from 'src/models/mensaje.model';
 import { debounceTime, distinctUntilChanged, fromEvent, tap } from 'rxjs';
+import { StoreService } from './providers/store.service';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +31,10 @@ export class AppComponent implements AfterViewInit {
    this.authService.authenticate(); 
   }
 
+  public register() {
+    this.authService.register(); 
+  }
+
   public logout() {
     this.authService.logout();  
   }
@@ -43,8 +48,6 @@ export class AppComponent implements AfterViewInit {
           this.mensaje = this.input.nativeElement.value = '';
         })
         .catch( (error) => console.log(error));
-      
     }
-    
   }
 }

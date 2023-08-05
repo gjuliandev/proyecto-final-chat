@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { IMensaje } from 'src/models/mensaje.model';
 import { limit, onSnapshot } from 'firebase/firestore';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -45,9 +47,6 @@ export class FirebaseService {
     }
     return addDoc(this.collectionRef, body);
   }
-  
 
- 
- 
 
 }

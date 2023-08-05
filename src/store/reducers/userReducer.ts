@@ -11,7 +11,7 @@ export function loggedInReducer ( state = initialState, action: any): IAppReduce
 
     if (action.type === 'ACTION_SET_CURRENT_USER') {
         return {
-            ...state, user:  action.payload
+            ...state, user:action.payload
         }
     }
    
