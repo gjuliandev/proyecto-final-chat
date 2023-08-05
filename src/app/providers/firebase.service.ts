@@ -1,8 +1,9 @@
 import { Injectable, inject } from '@angular/core';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import { DocumentReference, Firestore,doc,  addDoc, collection, collectionData, getDoc, getDocs, getFirestore, query, updateDoc, where, deleteDoc } from '@angular/fire/firestore';
 
+import { Firestore, addDoc, collection, getFirestore, query, orderBy } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { IMensaje } from 'src/models/mensaje.model';
+import { limit, onSnapshot } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -13,19 +14,36 @@ export class FirebaseService {
   public item$!: Observable<any[]>;
   db = getFirestore();
   collectionRef = collection(this.firestore, 'chats') as any;
-  docRef: any;
+
+  mensajes: Array<IMensaje> = [];
 
   constructor() { }
 
-  getMensajes() {
-    const itemCollection = collection(this.firestore, 'chats') as any;
-    return this.item$ = collectionData(itemCollection);
+  getAllMensajes() {
+
+    this.mensajes = [];
+
+    const q =  query(this.collectionRef,
+      orderBy('fecha', 'asc'), 
+      limit(30)
+    );
+
+    onSnapshot(q, (querySnapshot) => {
+              this.mensajes = [];
+              querySnapshot.forEach((doc:any) => {
+                this.mensajes.push(doc.data());
+              });
+            });
+
   }
 
-  createMensaje(mensaje: string) {
-    const itemCollection = collection(this.firestore, 'chats') as any;
-    const body = { mensaje: mensaje }
-    addDoc(itemCollection, body);
+  createMensaje(texto: string) {
+    const body = { 
+      nombre: 'Gabriel',
+      mensaje: texto,
+      fecha: new Date().getTime() 
+    }
+    return addDoc(this.collectionRef, body);
   }
   
 

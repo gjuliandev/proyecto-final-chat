@@ -1,9 +1,15 @@
 <div class="container">
   <button (click)="login()">Login</button>
   <button (click)="logout()">Logout</button>
-  <button (click)="getMensajes()">Listar mensajes</button>
 </div>
 <div>
-  <input type="text" [(ngModel)]="mensaje" />
+  <ul>
+    <li class="text" *ngFor="let item of firebaseService.mensajes">
+      {{item.mensaje}}
+    </li>
+  </ul>
+</div>
+<div>
+  <input type="text" #input placeholder="Escribir mensaje..." (keyup.enter)="newMessage()"/>
   <button (click)="newMessage()">Enviar</button>
 </div>

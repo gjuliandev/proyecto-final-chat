@@ -1,46 +1,49 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { AuthService } from './providers/auth.service';
 import { FirebaseService } from './providers/firebase.service';
+import { IMensaje } from 'src/models/mensaje.model';
+import { debounceTime, distinctUntilChanged, fromEvent, tap } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styles: []
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'CHAT - GJC';
 
-  public mensaje = '';
+  mensaje: string = '';
+  public mensajes: Array<IMensaje> = [];
+
+  @ViewChild('input') input!: ElementRef;
 
   constructor(
     private authService: AuthService,
-    private firebaseService: FirebaseService
+    public firebaseService: FirebaseService
    ) {}
+
+   ngAfterViewInit(): void {
+    this.firebaseService.getAllMensajes();
+  }
   
   public login() {
    this.authService.authenticate(); 
   }
 
   public logout() {
-    this.authService.logout();
+    this.authService.logout();  
   }
 
-  getMensajes() {
-    this.firebaseService.getMensajes()
-      .subscribe( {
-        next: (resp) => {
-          console.log(resp);
-        },
-        error: (err) => {
-          console.log(err)
-        }
-      })
-  }
 
   public newMessage() {
-    if (this.mensaje) {
-      this.firebaseService.createMensaje(this.mensaje);
-      this.mensaje = '';
+    this.mensaje = (this.input.nativeElement.value).trim();
+    if (this.mensaje ) {
+      this.firebaseService.createMensaje(this.mensaje )
+        .then( () => {
+          this.mensaje = this.input.nativeElement.value = '';
+        })
+        .catch( (error) => console.log(error));
+      
     }
     
   }
