@@ -22,10 +22,6 @@ export class ChatComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngAfterViewInit(): void {
-   
-  }
-
   public newMessage() {
     this.mensaje = (this.input.nativeElement.value).trim();
     if (this.mensaje ) {

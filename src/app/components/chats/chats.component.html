@@ -1,9 +1,8 @@
-<div *ngFor="let element of firebaseService.mensajes">
-    <div class="message other-message">
+<div *ngFor="let element of firebaseService.mensajes" [ngClass]="{ 'my-element': element.uid !== 'mstr3dHzWEPJ1WzYpUM1GhQhrIv2', 'other-element': element.uid === 'mstr3dHzWEPJ1WzYpUM1GhQhrIv2'}">
+    <div class="message" [ngClass]="{ 'my-message': element.uid !== 'mstr3dHzWEPJ1WzYpUM1GhQhrIv2', 'other-message': element.uid === 'mstr3dHzWEPJ1WzYpUM1GhQhrIv2'}">
         <span>
             {{element.mensaje}}
         </span>
         <div class="time text-right"><br>{{ element.fecha | date:'shortTime' }}</div>
     </div>
-   
 </div>

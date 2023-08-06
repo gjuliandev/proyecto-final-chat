@@ -31,34 +31,5 @@ header, footer {
 
 .messages-container {
     padding: 20px;
- 
     background-image: url('../../../assets/images/pattern.png');
 }
-
-.my-messages {
-    background: #DBF7C5;
-    color: #000;
-}
-
-.other-message {
-    background: #fff;
-    color: #000;
-}
-
-.message {
-    padding: 10px !important;
-    border-radius: 10px !important;
-    margin: 20px 20px 20px 20px !important;
-    width: 80%;
-    img {
-        width: 100%;
-    }
-}
-
-.time {
-    display: flex;
-    justify-content: flex-end;
-    color: #cacaca;
-    font-size: small;
-   
-  }

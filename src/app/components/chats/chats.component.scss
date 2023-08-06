@@ -1,3 +1,14 @@
+.my-element {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.other-element {
+    display: flex;
+    justify-content: flex-start;
+}
+
+
 .text-message{
     width: 90%;
     border: 1px solid #c3c3c3;
@@ -5,11 +16,11 @@
     background: #fff;
     box-shadow: 2px 2px 5px 0px rgb(0 0 0 / 5%);
     margin: 20px;
-
     padding: 10px;
+
 }
 
-.my-messages {
+.my-message {
     background: #DBF7C5;
     color: #000;
 }

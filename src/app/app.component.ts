@@ -20,7 +20,7 @@ export class AppComponent {
    ) {}
   
   public login() {
-   this.authService.authenticate('gjulianc@gmail.com', '123jklj3'); 
+   this.authService.authenticate('gjulian@test3.es', '4657489'); 
   }
 
   public register() {
