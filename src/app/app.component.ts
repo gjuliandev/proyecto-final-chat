@@ -19,14 +19,7 @@ export class AppComponent {
     public firebaseService: FirebaseService,
    ) {}
   
-  public login() {
-   this.authService.authenticate('gjulian@test3.es', '4657489'); 
-  }
-
-  public register() {
-    this.authService.register(); 
-  }
-
+  
   public logout() {
     this.authService.logout();  
   }
