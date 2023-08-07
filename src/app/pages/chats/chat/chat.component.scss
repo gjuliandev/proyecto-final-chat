@@ -1,9 +1,52 @@
 
 
+.message {
+    
+    padding: 10px !important;
+    border-radius: 10px !important;
+    margin: 20px 20px 20px 20px !important;
+    width: 80%;
+    img {
+        width: 100%;
+    }
+}
+
+.text-message{
+    width: 90%;
+    border: 1px solid #c3c3c3;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 2px 2px 5px 0px rgb(0 0 0 / 5%);
+    margin: 20px;
+
+    padding: 10px;
+}
+
 .my-messages {
-    color: green;
+    background: #DBF7C5;
+    color: #000;
 }
 
 .other-messages {
-    color: blue;
+    background: #fff;
+    color: #000;
 }
+
+.my-messages-position {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.other-messages-position {
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+.time {
+    display: flex;
+    justify-content: flex-end;
+    color: #cacaca;
+    font-size: small;
+   
+  }
