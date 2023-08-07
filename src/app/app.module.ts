@@ -19,11 +19,13 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { FullComponent } from './layout/full/full.component';
 import { SidenavComponent } from './layout/full/sidenav/sidenav.component';
+import { BlankComponent } from './layout/blank/blank.component';
 @NgModule({
   declarations: [
     AppComponent,
     FullComponent,
-    SidenavComponent
+    SidenavComponent,
+    BlankComponent
   ],
   imports: [
     BrowserModule,

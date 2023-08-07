@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/providers/auth.service';
+import { FirebaseService } from 'src/app/providers/firebase.service';
 import { IRegister } from 'src/models/register.model';
 
 @Component({
@@ -17,10 +17,11 @@ export class RegisterComponent implements OnInit {
   msg = '';
   error = false;
   recuerdame = false;
+  authService: any;
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
+    private firebaseService: FirebaseService,
     private router: Router
   ) { }
 
@@ -42,7 +43,7 @@ export class RegisterComponent implements OnInit {
     }
 
     console.log(registerData);
-    this.authService.register(registerData)
+    this.firebaseService.register(registerData)
         .then((userCredential) => {
           // Signed in 
           console.log(userCredential);

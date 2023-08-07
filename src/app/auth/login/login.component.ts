@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/providers/auth.service';
+import { FirebaseService } from 'src/app/providers/firebase.service';
 import { StoreService } from 'src/app/providers/store.service';
 import { ILogin } from 'src/models/login.model';
 import { ACTION_SET_CURRENT_USER } from 'src/store/action/appActions';
@@ -13,7 +13,7 @@ import { ACTION_SET_CURRENT_USER } from 'src/store/action/appActions';
 export class LoginComponent implements OnInit {
 
   constructor(
-    private authService: AuthService,
+    private firebaseService: FirebaseService,
     private storeService: StoreService,
     private router: Router
   ) { }
@@ -27,21 +27,18 @@ export class LoginComponent implements OnInit {
      email: 'gjulian@gmail.com',
      password: '123456'
     }
-    this.authService.authenticate(loginData)
+    this.firebaseService.authenticate(loginData)
        .then((userCredential) => {
          // Logged in 
          const user = userCredential.user;
-
-         console.log('user', user)
         
          // Guardamos en el store redux el usuario
-         this.storeService.updateState({
-           type: ACTION_SET_CURRENT_USER,
-           payload: user
-         });
- 
+        //  this.storeService.updateState({
+        //    type: ACTION_SET_CURRENT_USER,
+        //    payload: user
+        //  });
+        
          this.router.navigateByUrl('/chats');
-            
        })
        .catch((error) => {
        

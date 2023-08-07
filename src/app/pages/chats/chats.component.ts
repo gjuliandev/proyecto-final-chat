@@ -9,43 +9,39 @@ import { IMensaje } from 'src/models/mensaje.model';
   templateUrl: './chats.component.html',
   styleUrls: ['./chats.component.scss']
 })
-export class ChatsComponent implements OnInit, AfterViewInit {
+export class ChatsComponent implements OnInit {
 
   mensaje: string = '';
-  public mensajes: Array<IMensaje> = [];
   @ViewChild('input') input!: ElementRef;
+  user: any;
   
   constructor(
     public firebaseService: FirebaseService,
     private storeService: StoreService
   ) { }
 
-
-  ngAfterViewInit(): void {
-    
-  }
-
   ngOnInit(): void {
+    
     this.storeService.getState('userState')
       .subscribe({
-        next: (resp) => {
-          console.log(resp)
+        next: (data) => {
+          console.log(data);
+          this.user = data.user;
         },
         error: (err) => {
           console.log(err)
         }
-      })
-    this.firebaseService.getAllMensajes();
+      });
   }
 
   public newMessage() {
     this.mensaje = (this.input.nativeElement.value).trim();
     if (this.mensaje ) {
-      this.firebaseService.createMensaje(this.mensaje )
+      this.firebaseService.createMensaje(this.mensaje, this.user)
         .then( () => {
           this.mensaje = this.input.nativeElement.value = '';
         })
-        .catch( (error) => console.log(error));
+      //   .catch( (error) => console.log(error));
     }
   }
 

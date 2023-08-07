@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FirebaseService } from 'src/app/providers/firebase.service';
 import { StoreService } from 'src/app/providers/store.service';
 
 @Component({
@@ -11,7 +13,9 @@ export class SidenavComponent implements OnInit {
 
   user: any;
   constructor(
-    private storeService: StoreService
+    private storeService: StoreService,
+    private firebaseService: FirebaseService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -25,6 +29,12 @@ export class SidenavComponent implements OnInit {
           console.log(err)
         }
       })
+  }
+
+  public logout() {
+    this.router.navigateByUrl('/auth/login')
+    this.firebaseService.logout();  
+    
   }
 
 }

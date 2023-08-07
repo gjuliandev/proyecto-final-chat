@@ -1,16 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { FirebaseService } from 'src/app/providers/firebase.service';
+import { IMensaje } from 'src/models/mensaje.model';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styles: [
-  ]
+  styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements AfterViewInit {
 
-  constructor() { }
+  @Input() user: any;
+  
+  public mensajes: Array<IMensaje> = [];
+  
+  constructor(
+    public firebaseService: FirebaseService
+  ) {   ;}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    // this.firebaseService.getMensajesByUid('e3rQa2W2SdRlKgjW6ud5vBMwnYx1');
+    this.firebaseService.getAllMensajes()
   }
 
 }
