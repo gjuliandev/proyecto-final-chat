@@ -31,11 +31,11 @@ export class FirebaseService {
     );
 
     onSnapshot(q, (querySnapshot) => {
-              this.mensajes = [];
-              querySnapshot.forEach((doc:any) => {
-                this.mensajes.push(doc.data());
-              });
-            });
+      this.mensajes = [];
+      querySnapshot.forEach( async (doc: any) => {
+        this.mensajes.push(doc.data());
+      });
+    });
 
   }
 

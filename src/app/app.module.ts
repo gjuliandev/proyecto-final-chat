@@ -17,9 +17,13 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
+import { FullComponent } from './layout/full/full.component';
+import { SidenavComponent } from './layout/full/sidenav/sidenav.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FullComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,

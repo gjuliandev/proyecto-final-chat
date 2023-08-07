@@ -4,6 +4,9 @@ import { FirebaseService } from './providers/firebase.service';
 import { IMensaje } from 'src/models/mensaje.model';
 import { debounceTime, distinctUntilChanged, fromEvent, tap } from 'rxjs';
 import { StoreService } from './providers/store.service';
+import { IRegister } from 'src/models/register.model';
+import { ILogin } from 'src/models/login.model';
+import { ACTION_SET_CURRENT_USER } from 'src/store/action/appActions';
 
 @Component({
   selector: 'app-root',
@@ -21,20 +24,15 @@ export class AppComponent implements AfterViewInit {
   constructor(
     private authService: AuthService,
     public firebaseService: FirebaseService,
-    private storageService: StoreService
+    private storeService: StoreService
    ) {}
 
    ngAfterViewInit(): void {
     this.firebaseService.getAllMensajes();
   }
   
-  public login() {
-   this.authService.authenticate('gjulianc@gmail.com', '123jklj3'); 
-  }
 
-  public register() {
-    this.authService.register(); 
-  }
+
 
   public logout() {
     this.authService.logout();  

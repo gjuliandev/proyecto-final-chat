@@ -5,6 +5,8 @@ import { ACTION_SET_CURRENT_USER } from 'src/store/action/appActions';
 
 import { getAuth, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { IUser } from 'src/models/user.model';
+import { IRegister } from 'src/models/register.model';
+import { ILogin } from 'src/models/login.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,44 +20,14 @@ export class AuthService {
   ) { }
 
 
-  public authenticate(email: string, password: string) {
+  public authenticate(loginData: ILogin) {
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Logged in 
-        const user = userCredential.user;
-        this.storeService.updateState({
-          type: ACTION_SET_CURRENT_USER,
-          payload: user
-        });
-
-        this.storeService.getState('userState')
-            .subscribe( resp => console.log(resp.user.email));
-      
-      })
-      .catch((error) => {
-      
-        const errorCode = error.code
-        const errorMessage = error.message;
-     
-      });
+    return signInWithEmailAndPassword(auth, loginData.email, loginData.password);
   }
 
-  public register() {
+  public register(registerData: IRegister) {
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, 'gjulian@test3.es', '4657489')
-    .then((userCredential) => {
-      // Signed in 
-      console.log(userCredential);
-     
-    })
-    .catch((error) => {
-      console.log(error);
-      const errorCode = error.code;
-      console.log(errorCode);
-      const errorMessage = error.message;
-      console.log(errorMessage);
-    });    
+    return createUserWithEmailAndPassword(auth, registerData.email, registerData.password);
   }
 
   updateProfile() {

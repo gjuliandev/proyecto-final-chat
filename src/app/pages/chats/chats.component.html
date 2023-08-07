@@ -1,0 +1,13 @@
+<p>chats works!</p>
+
+<div>
+    <ul *ngIf="firebaseService.mensajes">
+      <li class="text" *ngFor="let item of firebaseService.mensajes">
+        {{item.mensaje}}
+      </li>
+    </ul>
+  </div>
+  <div>
+    <input type="text" #input placeholder="Escribir mensaje..." (keyup.enter)="newMessage()"/>
+    <button (click)="newMessage()">Enviar</button>
+  </div>
