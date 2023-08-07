@@ -17,21 +17,23 @@ export class ChatsComponent implements OnInit {
   
   constructor(
     public firebaseService: FirebaseService,
-    private storeService: StoreService
+    // private storeService: StoreService
   ) { }
 
   ngOnInit(): void {
     
-    this.storeService.getState('userState')
-      .subscribe({
-        next: (data) => {
-          console.log(data);
-          this.user = data.user;
-        },
-        error: (err) => {
-          console.log(err)
-        }
-      });
+    this.user = this.firebaseService.getCurrentUser();
+
+    // this.storeService.getState('userState')
+    //   .subscribe({
+    //     next: (data) => {
+    //       console.log(data);
+    //       this.user = data.user;
+    //     },
+    //     error: (err) => {
+    //       console.log(err)
+    //     }
+    //   });
   }
 
   public newMessage() {

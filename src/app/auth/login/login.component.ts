@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
          // Logged in 
          const user = userCredential.user;
         
-         // Guardamos en el store redux el usuario
+        // Guardamos en el store redux el usuario
         //  this.storeService.updateState({
         //    type: ACTION_SET_CURRENT_USER,
         //    payload: user

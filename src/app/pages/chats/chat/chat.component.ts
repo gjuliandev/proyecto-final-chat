@@ -18,8 +18,7 @@ export class ChatComponent implements AfterViewInit {
   ) {   ;}
 
   ngAfterViewInit(): void {
-    // this.firebaseService.getMensajesByUid('e3rQa2W2SdRlKgjW6ud5vBMwnYx1');
-    this.firebaseService.getAllMensajes()
+    this.firebaseService.getMessages()
   }
 
 }

@@ -3,13 +3,12 @@ import { Injectable, inject } from '@angular/core';
 import { Firestore, addDoc, collection, getFirestore, query, orderBy } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { IMensaje } from 'src/models/mensaje.model';
-import { doc, getDoc, getDocs, limit, onSnapshot, where } from 'firebase/firestore';
+import { limit, onSnapshot } from 'firebase/firestore';
 import { StoreService } from './store.service';
 import { ILogin } from 'src/models/login.model';
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import { IRegister } from 'src/models/register.model';
-import { ACTION_SET_CURRENT_USER } from 'src/store/action/appActions';
-import { error } from 'console';
+
 
 @Injectable({
   providedIn: 'root'
@@ -25,12 +24,10 @@ export class  FirebaseService {
   mensajes: Array<IMensaje> = [];
 
   constructor(
-    private storeService: StoreService,
-
-
+    // private storeService: StoreService,
   ) { }
 
-  async getAllMensajes() {
+  async getMessages() {
 
     this.mensajes = [];
 
@@ -43,7 +40,6 @@ export class  FirebaseService {
       (querySnapshot) => {
         this.mensajes = [];
         querySnapshot.forEach((doc:any) => {
-          console.log(doc.data())
           this.mensajes.push(doc.data());
         });
       },
@@ -79,7 +75,7 @@ export class  FirebaseService {
 
   }
 
-  createMensaje(texto: string, user: any) {
+  async createMensaje(texto: string, user: any) {
     const body = { 
       nombre: user.nombre || 'no-name',
       mensaje: texto,
@@ -117,9 +113,14 @@ export class  FirebaseService {
     }
   }
 
-  public isLoggedIn() {
+  public isLoggedIn(): boolean {
     const auth = getAuth();
     return auth.currentUser ? true : false; 
+  }
+
+  public getCurrentUser() {
+    const auth = getAuth();
+    return auth.currentUser;
   }
 
   public logout() {

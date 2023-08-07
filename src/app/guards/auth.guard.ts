@@ -14,15 +14,12 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {
 
-    // if ( this.authService.isLoggedIn()  ) {
-    //   this.router.navigateByUrl('/chats');
-    //   return true;
-    // } else {
-    //   this.router.navigateByUrl('/auth/login');
-    //   return false;
-    // }
-             
-    return true;
+    if ( this.firebaseService.isLoggedIn()  ) {
+      return true;
+    } else {
+      this.router.navigateByUrl('/auth/login');
+      return false;
+    }
   }
   
 }
