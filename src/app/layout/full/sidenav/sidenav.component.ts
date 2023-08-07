@@ -6,8 +6,7 @@ import { StoreService } from 'src/app/providers/store.service';
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
-  styles: [
-  ]
+  styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
 
